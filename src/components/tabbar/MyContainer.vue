@@ -2,14 +2,17 @@
     <div class="my-page">
         <div class="header">
             <div class="content-box">
-                <span class="avator" v-if="!nowUser">
-                    <img :src="default_image" alt="">
+                <span class="avator"  v-if="!nowUser">
+                    <img :src=" getHost() + default_image " alt="">
                 </span>
-                <router-link to="/my" v-if="nowUser"> 
+                <span class="avator" @click=" upImg " v-if="nowUser">
+                        <img :src=" getHost() + login_image" alt="">
+                    </span>
+                <!-- <router-link to="/my/upImg" v-if="nowUser"> 
                     <span class="avator">
                         <img :src="nowUser ? login_image : default_image" alt="">
                     </span>
-                </router-link>
+                </router-link> -->
                 <router-link to="/my/login" v-if="!nowUser"> 
                     <span >登录</span>
                 </router-link>
@@ -21,7 +24,7 @@
                 </router-link>
             </div>
         </div>
-        
+        <upImg v-if="ifUpImg" @closeBox="closeBox" :loginAvator="login_image" @changeAvatorAddress="changeAvatorAddress"></upImg>
 		<div class="content " :class=" [nowUser ? 'highlight' : ''] ">
             <div class="item ">
                 <span class="posi ">
@@ -85,23 +88,41 @@
 </template>
 <script>
     import { mapGetters } from 'vuex'
+    import upImg from '../my-page/upImg.vue'
     export default {
+        inject: [ 'reload' ],
         data() {
             return {
-                default_image: this.getHost() + '/public/images/default_avator.jpg',
-                login_image: this.getHost() + '/public/images/login_avator.jpg',
-                nowUser:''
+                default_image:  '/public/images/default_avator.jpg',
+                login_image: '',
+                nowUser:'',
+                ifUpImg: false,
+                countOfCommitImg: 0
             }
         },
         created(){
             this.nowUser = sessionStorage.getItem( 'nowUser' )
+            this.login_image = '/public/images/person/' + this.nowUser +'.jpg'
         },
         methods : {
             ...mapGetters( [ 'getHost' ] ),
             loginOut(){
                 this.nowUser = '',
                 sessionStorage.setItem( 'nowUser','' )
+            },
+            upImg(){
+                this.ifUpImg = true
+            },
+            closeBox( ){
+                this.ifUpImg = false
+                //this.reload(),
+            },
+            changeAvatorAddress ( url ){
+                this.login_image =  url
             }
+        },
+        components: {
+            'upImg': upImg
         }
     }
 </script>

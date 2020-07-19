@@ -44,6 +44,7 @@
     "better-scroll": "^1.15.2",
     "bootstrap": "3.3.7",
     "cnpm": "^6.1.0",
+    "echarts": "^4.8.0",
     "eslint": "^6.6.0",
     "eslint-loader": "^3.0.2",
     "jquery": "^3.4.1",

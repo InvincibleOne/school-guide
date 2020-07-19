@@ -111,7 +111,6 @@ export default {
                 return 
             }
             else if ( this.capInput !== Cookies.get( 'cap' ) ) {
-                console.log( Cookies.get( 'cap' ) )
                 this.alertText = '验证码输入不正确！'
                 this.inputError = true
                 this.changeCaptcha()

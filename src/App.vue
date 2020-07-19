@@ -12,11 +12,11 @@
                             <span class="mui-icon mui-icon-home"></span>
                             <span class="mui-tab-label">首页</span>
                     </router-link>
-                    <!-- <router-link class="mui-tab-item-lib" to="/search">
+                    <router-link class="mui-tab-item-lib" to="/search">
                             <span class="mui-icon mui-icon-search"></span>
-                            <span class="mui-tab-label">搜索</span>
+                            <span class="mui-tab-label">查询</span>
                     </router-link>
-                    <router-link class="mui-tab-item-lib" to="/shopcar">
+                    <!--  <router-link class="mui-tab-item-lib" to="/shopcar">
                             <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">9</span></span>
                             <span class="mui-tab-label">购物车</span>
                     </router-link> -->
@@ -29,7 +29,7 @@
         </div>
         <div class="app-container" :class="{ 'hide-title' : ifHideTitle }">
             <transition>
-                <router-view ></router-view>
+                <router-view v-if="isRouterAlive"></router-view>
             </transition>
         </div>
     </div>
@@ -37,11 +37,17 @@
 <script>
 import { mapState, mapMutations, mapGetters } from 'vuex'
 export default {
+    provide(){
+        return {
+            reload: this.reload
+        }
+    },
     data(){
         return {
             ifRootDir:true,
             prePath:'/',
             history:['/'],
+            isRouterAlive: true
         }
     },
     
@@ -107,6 +113,12 @@ export default {
         refreshPrepath(){
             this.prePath = this.history[this.history.length - 1] ? this.history[this.history.length - 1] : '/'
             //console.log(this.history)
+        },
+        reload(){
+            this.isRouterAlive = false
+            this.$nextTick(function () {
+            this.isRouterAlive = true
+            })
         }
     },
     watch:{

@@ -258,8 +258,16 @@ export default {
                                 display :flex
 
                                 .icon
-                                    flex : 0 0 80px
+                                    flex : 0 0 120px
                                     margin : 0 10px 0 0
+                                    box-sizing: border-box
+                                    overflow hidden
+                                    height :80px
+                                    background-size : 120px 80px
+                                    background: url( ./images/loading.gif ) no-repeat center
+
+                                   
+
 
                                 .content
                                     flex : 1

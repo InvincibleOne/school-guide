@@ -6,7 +6,8 @@ export default new Vuex.Store({
         title: '云上逛大学',
         ifLogined:false,
         ifHideTitle:false,
-        host:'http://112.74.164.4:8090'
+        // host:'http://112.74.164.4:8090'
+        host:'http://127.0.0.1:5000'
     },
     mutations:{
         changeTitle(state,title){

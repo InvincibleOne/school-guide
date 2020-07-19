@@ -57,7 +57,7 @@ export default {
                 return Toast('请输入留言内容或者点赞！')
             }
             let prime = this.ifPrime ? 1 : 0
-            rating =  {type: this.type, school: this.school, viewpoint: this.viewPoint, username:sessionStorage.getItem( 'nowUser' ), add_time:Date.now(), avator_address: '/public/images/login_avator.jpg', content: this.msg.trim(), prime:prime}
+            rating =  {type: this.type, school: this.school, viewpoint: this.viewPoint, username:sessionStorage.getItem( 'nowUser' ), add_time:Date.now(), avator_address: '/public/images/person/' + sessionStorage.getItem( 'nowUser' ) + '.jpg', content: this.msg.trim(), prime:prime}
             this.$emit( 'addRating', rating )
             this.$http.post( this.getHost() + '/commitComment', rating )
             .then(function(result){

@@ -30,7 +30,7 @@
                             <li  v-for="(rating,index) in ratings" v-show="needShow(selectType, rating)"  class="rating-item " :key="index">
                             <div class="user">
                                 <span class="name">{{rating.username}}</span>
-                                <img class="avatar" width="12" height="12" :src=" host + rating.avator_address">
+                                <img class="avatar" width="12" height="12" :src=" host + '/public/images/person/' + rating.username + '.jpg' ">
                             </div>
                             <div class="time">{{ rating.add_time | dateFormat}}</div>
                             <p class="text">

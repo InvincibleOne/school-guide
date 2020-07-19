@@ -26,7 +26,7 @@
                     <ul>
                         <li v-for="(rating,index) in ratings"  v-show="needShow(selectType, rating)" class="rating-item" :key="index">
                             <div class="avatar">
-                            <img width="28" height="28" :src=" getHost() + rating.avator_address">
+                            <img width="28" height="28" :src=" getHost() + '/public/images/person/' + rating.username + '.jpg' ">
                             </div>
                             <div class="content">
                                 <h1 class="name">{{rating.username}}</h1>
